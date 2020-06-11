@@ -2,6 +2,7 @@
   position: fixed;
   top: 0px;
   width: 100%;
+  z-index: 2;
   padding: 5px 0px;
   background-color: white;
   box-shadow: 0 18px 36px -18px rgba(0, 0, 0, 0.3),
@@ -55,6 +56,27 @@
   opacity: 0;
 }
 
+@keyframes float {
+  0% {
+    
+    box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
+      0 18px 36px -18px rgba(0, 0, 0, 0.3),
+      0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+  }
+  50% {
+    
+    box-shadow: 0 30px 60px -60px rgba(50, 50, 93, 0.25),
+      0 18px 36px -18px rgba(0, 0, 0, 0.3),
+      0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+  }
+  100% {
+    
+    box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
+      0 18px 36px -18px rgba(0, 0, 0, 0.3),
+      0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+  }
+}
+
 .chat__write {
   margin: 0 auto;
   bottom: 0px;
@@ -71,11 +93,11 @@
 .chat__write:focus {
   outline: none;
   width: 80%;
-
   transform: translateY(-50px);
   border-radius: 40px;
   box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
     0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+    animation: float 3s linear  infinite forwards;
 }
 
 .chat__write i {
@@ -122,10 +144,20 @@
   align-self: flex-start;
 }
 
+@keyframes spin{
+  from{
+    transform: none;
+  }
+  to{
+    transform: rotateY(1turn);
+  }
+}
+
 .incoming-message img {
   margin-right: 15px;
   width: 50px;
   border-radius: 25px;
+  animation: spin 1s linear infinite;
 }
 
 .sent-message {
@@ -161,4 +193,34 @@
 .sent-message .message__bubble {
   border-bottom-right-radius: 0px;
   background-image: linear-gradient(to left, #c9d6ff, #e2e2e2);
+}
+
+@keyframes incomingAnimation{
+  from{
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  to{
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.incoming-message {
+  animation: incomingAnimation 0.5s ease-out forwards;
+}
+
+@keyframes sentanimation{
+  from{
+    opacity: 0;
+    transform: translateX(200px);
+  }
+  to{
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.sent-message{
+  animation: sentanimation .5s ease-out forwards;
 }
